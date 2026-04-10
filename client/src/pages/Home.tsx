@@ -5,6 +5,7 @@ import { ChevronRight, Linkedin, TrendingUp, Users, Target, Zap } from "lucide-r
 export default function Home() {
   const baseUrl = import.meta.env.BASE_URL;
   const publicAsset = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
+  const logoUrl = publicAsset("/logo.png?v=4");
   const partnerFormUrl = "https://forms.gle/6JWYVZzstsXab9P18";
   const whitePaperUrl = publicAsset("/docs/attune_white_paper.pdf");
   const teamMembers = [
@@ -59,7 +60,7 @@ export default function Home() {
         <div className="container mx-auto px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={publicAsset("/logo.png")}
+              src={logoUrl}
               alt="Attune logo"
               className="w-10 h-10 rounded-full object-contain bg-[#1a1819] p-1 border border-[#2a3f58]"
             />
@@ -668,12 +669,12 @@ export default function Home() {
             {teamMembers.map((member, i) => (
               <div key={i} className="p-8 rounded-lg bg-[#1a1819]/50 border border-[#2a3f58]">
                 <img
-                  src={member.photo || publicAsset("/logo.png")}
+                  src={member.photo || logoUrl}
                   alt={member.name}
                   className="w-28 h-28 rounded-full object-cover border border-[#2a3f58] mb-5"
                   loading="lazy"
                   onError={(event) => {
-                    event.currentTarget.src = publicAsset("/logo.png");
+                    event.currentTarget.src = logoUrl;
                   }}
                 />
                 <h3 className="font-bold text-xl mb-1">{member.name}</h3>
@@ -720,7 +721,7 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img
-                  src={publicAsset("/logo.png")}
+                  src={logoUrl}
                   alt="Attune logo"
                   className="w-8 h-8 rounded-full object-contain bg-[#1a1819] p-1 border border-[#2a3f58]"
                 />
