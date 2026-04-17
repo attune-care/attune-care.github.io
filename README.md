@@ -6,7 +6,7 @@ The first pre-prosthetic EMG training platform preparing amputees for myoelectri
 
 Attune uses surface EMG sensors and immersive XR environments to help amputees train muscle signals to control a virtual prosthetic hand before physical device delivery, reducing early frustration and improving long-term prosthetic adoption.
 
-Website: [https://ayang46.github.io/](https://ayang46.github.io/attune-website/)
+Website: [attune-care.github.io/attune/](attune-care.github.io/attune/)
 
 ## Project Structure
 
