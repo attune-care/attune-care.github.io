@@ -85,7 +85,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for Cloudflare Pages, Netlify, and Vercel, pl
 1. **Hero**: positioning, plus a "press and hold" virtual-hand teaser
 2. **Story**: sticky scrollytelling through the care pathway (surgery → waiting → fitting → daily life)
 3. **Problem**: patient, clinician, and system lenses, with cited statistics
-4. **Product**: how Attune works, an interactive practice round, and an illustrative clinician readiness view
+4. **Product**: how Attune works and an illustrative clinician readiness view
 5. **Opportunity**: why now, care-pathway positioning, B2B2C model, milestones
 6. **Mission**
 7. **Team**

@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { links, navItems, publicAsset } from "@/lib/site";
+import { navItems, publicAsset } from "@/lib/site";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -90,12 +90,11 @@ export function Nav() {
             ))}
           </ul>
           <a
-            href={links.partnerForm}
-            target="_blank"
-            rel="noreferrer"
+            href="#contact"
+            onClick={() => setOpen(false)}
             className="mt-2 inline-flex w-full justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-paper"
           >
-            Partner with us
+            Get in touch
           </a>
         </div>
       )}

@@ -9,35 +9,25 @@ const stages = [
 
 const chapters = [
   {
-    stage: 0,
-    kicker: "Chapter one",
-    title: "Life changes in an afternoon.",
-    body: "Upper-limb loss is sudden for some and long anticipated for others. Either way, the person who wakes up is facing a new body and a long road.",
-  },
-  {
     stage: 1,
-    kicker: "Chapter two",
-    title: "Then comes the wait.",
-    body: "Weeks, often months, of healing before a prosthesis can be fitted. The wound recovers, but the muscles that will one day open and close a hand go quiet. For most people there is no structured way to practice.",
+    title: "After amputation, there's a wait.",
+    body: "Healing takes weeks, often months, before a prosthesis can be fitted. For most people, there's nothing structured to practice in that time.",
   },
   {
     stage: 2,
-    kicker: "Chapter three",
-    title: "Fitting day arrives with a lot of hope.",
-    body: "A myoelectric prosthesis responds to signals from the residual limb. Many people expect it to feel natural right away. In reality, control is a skill, and it takes time and practice to learn.",
+    title: "Then the device arrives.",
+    body: "A myoelectric hand is driven by muscle signals from the residual limb. Almost no one has felt that before fitting day. Control is a skill, and most people start learning it from zero.",
   },
   {
     stage: 3,
-    kicker: "Chapter four",
-    title: "Too many devices end up in a drawer.",
-    body: "When early sessions feel unpredictable, confidence drops. Studies report that roughly one in four adults stop using electric upper-limb prostheses, and some recent estimates run higher.",
+    title: "Too many people give up.",
+    body: "Early sessions are frustrating, and confidence goes fast. Studies report that about a quarter of adults stop using electric upper-limb prostheses, and some put the number much higher.",
     cite: [3, 4],
   },
   {
     stage: -1,
-    kicker: "What if",
-    title: "What if the learning started during the wait?",
-    body: "That is Attune. We turn the pre-fitting window from lost time into preparation, so people meet their prosthesis already knowing how it feels to control one.",
+    title: "We start the learning during the wait.",
+    body: "Attune turns the months before fitting into practice time, so people arrive already knowing what control feels like.",
   },
 ];
 
@@ -67,7 +57,7 @@ export function Story() {
         {/* Sticky visual */}
         <div className="sticky top-16 z-10 -mx-5 bg-night/95 px-5 pt-8 pb-6 backdrop-blur sm:-mx-8 sm:px-8 lg:top-0 lg:mx-0 lg:flex lg:h-screen lg:items-center lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
           <div className="w-full">
-            <p className="eyebrow text-cream/60">{attuneMode ? "The care pathway with Attune" : "The care pathway today"}</p>
+            <p className="eyebrow text-cream/60">{attuneMode ? "With Attune" : "The path to a prosthesis"}</p>
             <div className="mt-5 flex h-14 w-full gap-1.5 sm:h-16" aria-hidden>
               {stages.map((s, i) => {
                 const on = attuneMode ? i === 1 : i <= current.stage;
@@ -105,11 +95,6 @@ export function Story() {
                 </span>
               ))}
             </div>
-            <p className="mt-8 hidden max-w-md font-display text-2xl leading-snug text-cream/90 lg:block">
-              {attuneMode
-                ? "Same timeline. A different starting point."
-                : "The weeks before fitting are the longest part of this picture, and the least supported."}
-            </p>
           </div>
         </div>
 
@@ -122,12 +107,11 @@ export function Story() {
                 refs.current[i] = el;
               }}
               data-index={i}
-              className={`flex min-h-[70vh] flex-col justify-center transition-opacity duration-500 ${
+              className={`flex min-h-[60vh] flex-col justify-center transition-opacity duration-500 ${
                 active === i ? "opacity-100" : "opacity-35"
               }`}
             >
-              <p className={`eyebrow ${c.stage === -1 ? "text-[#9db6f2]" : "text-cream/55"}`}>{c.kicker}</p>
-              <h3 className="mt-4 text-3xl leading-tight text-cream sm:text-4xl">{c.title}</h3>
+              <h3 className=" text-3xl leading-tight text-cream sm:text-4xl">{c.title}</h3>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-cream/75">
                 {c.body}
                 {c.cite && (

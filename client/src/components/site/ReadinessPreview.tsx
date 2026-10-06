@@ -8,8 +8,6 @@ type Snapshot = {
   consistency: number;
   confidence: number;
   trend: number[];
-  note: string;
-  status: { text: string; tone: "early" | "building" | "ready" };
 };
 
 // Illustrative values only, not patient data or study results.
@@ -20,8 +18,6 @@ const snapshots: Snapshot[] = [
     consistency: 34,
     confidence: 2.1,
     trend: [18, 26, 22, 31, 34],
-    note: "Getting familiar with the sensation. Short, frequent sessions recommended.",
-    status: { text: "Getting started", tone: "early" },
   },
   {
     label: "Week 3",
@@ -29,8 +25,6 @@ const snapshots: Snapshot[] = [
     consistency: 58,
     confidence: 3.3,
     trend: [34, 40, 47, 45, 52, 58],
-    note: "Open and close are becoming repeatable. Fatigue shows late in sessions.",
-    status: { text: "Building control", tone: "building" },
   },
   {
     label: "Week 6",
@@ -38,16 +32,9 @@ const snapshots: Snapshot[] = [
     consistency: 81,
     confidence: 4.4,
     trend: [58, 63, 70, 68, 76, 79, 81],
-    note: "Steady, graded control. Patient reports feeling prepared for fitting.",
-    status: { text: "Ready to discuss fitting", tone: "ready" },
   },
 ];
 
-const toneClass = {
-  early: "bg-paper-deep text-ink-soft",
-  building: "bg-cream text-ink",
-  ready: "bg-signal-soft text-signal-deep",
-};
 
 function Sparkline({ values }: { values: number[] }) {
   const w = 240;
@@ -74,8 +61,8 @@ export function ReadinessPreview() {
         <div className="rounded-[2rem] border border-line bg-white p-5 sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-xs font-medium text-ink-mute">Patient A · Pre-fitting</p>
-              <p className="font-sans text-lg font-semibold text-ink">Readiness overview</p>
+              <p className="font-sans text-lg font-semibold text-ink">Patient A</p>
+              <p className="text-xs font-medium text-ink-mute">Before fitting</p>
             </div>
             <div role="tablist" aria-label="Training week" className="flex rounded-full bg-paper-deep p-1">
               {snapshots.map((snap, i) => (
@@ -96,11 +83,8 @@ export function ReadinessPreview() {
           </div>
 
           <div role="tabpanel" aria-live="polite" className="mt-6">
-            <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${toneClass[s.status.tone]}`}>
-              {s.status.text}
-            </span>
 
-            <dl className="mt-5 grid grid-cols-3 gap-3">
+            <dl className="grid grid-cols-3 gap-3">
               {[
                 { k: "Practice sessions", v: String(s.sessions) },
                 { k: "Activation consistency", v: `${s.consistency}%` },
@@ -118,27 +102,22 @@ export function ReadinessPreview() {
               <Sparkline values={s.trend} />
             </div>
 
-            <p className="mt-5 rounded-xl bg-paper p-4 text-sm leading-relaxed text-ink-soft">
-              <span className="font-semibold text-ink">Clinician note: </span>
-              {s.note}
-            </p>
           </div>
 
           <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-ink-mute">
             <Info className="mt-0.5 h-3.5 w-3.5 flex-none" aria-hidden />
-            Illustrative mock-up with fictional values. Not real patient data or study results.
+            Mock-up with made-up numbers. Not real patient data.
           </p>
         </div>
       </Reveal>
 
       <Reveal className="order-1 lg:order-2">
-        <p className="eyebrow text-signal">For the care team</p>
-        <h3 className="mt-4 text-3xl leading-tight text-ink sm:text-4xl">Walk into the first fitting already knowing your patient.</h3>
+        <p className="eyebrow text-signal">For clinicians</p>
+        <h3 className="mt-4 text-3xl leading-tight text-ink sm:text-4xl">A baseline before the first fitting.</h3>
         <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-          Attune turns weeks of home practice into a simple picture of engagement, progress, and confidence. It
-          gives clinicians context, not another system to manage.
+          Clinicians often walk into a first fitting knowing little about a patient&rsquo;s muscle control.
+          Attune shows how the weeks of practice went, in a view that takes a minute to read.
         </p>
-        <p className="mt-4 text-ink-soft">Switch between weeks to see how a readiness picture might take shape.</p>
       </Reveal>
     </div>
   );

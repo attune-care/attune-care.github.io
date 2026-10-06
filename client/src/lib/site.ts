@@ -10,9 +10,9 @@ export const links = {
 };
 
 export const navItems = [
-  { href: "#story", label: "Why it matters" },
+  { href: "#story", label: "Story" },
   { href: "#product", label: "How it works" },
-  { href: "#opportunity", label: "Opportunity" },
+  { href: "#opportunity", label: "Why Attune" },
   { href: "#team", label: "Team" },
 ];
 
@@ -43,14 +43,14 @@ export const team: TeamMember[] = [
   },
   {
     name: "Taylor Foster",
-    role: "Product Development & Human Factors",
+    role: "Product & Human Factors",
     discipline: "Human Systems Engineering",
     photo: publicAsset("/img/taylor-foster.jpg"),
     linkedin: "https://www.linkedin.com/in/taylor-foster-human-centered-design/",
   },
   {
     name: "Tanisha Dalwadi",
-    role: "Software & Experience Design",
+    role: "Software & UX",
     discipline: "Human-Computer Interaction",
     photo: publicAsset("/img/tanisha-dalwadi.jpg"),
     linkedin: "https://www.linkedin.com/in/tanisha-dalwadi",
