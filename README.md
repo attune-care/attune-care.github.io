@@ -6,7 +6,7 @@ The first pre-prosthetic EMG training platform preparing amputees for myoelectri
 
 Attune uses surface EMG sensors and immersive XR environments to help amputees train muscle signals to control a virtual prosthetic hand before physical device delivery, reducing early frustration and improving long-term prosthetic adoption.
 
-Website: [attune-care.github.io/](attune-care.github.io/)
+Website: [attune-care.github.io](https://attune-care.github.io/)
 
 ## Project Structure
 
@@ -75,51 +75,36 @@ Output is in `dist/public/`
 
 ## Deployment
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions for:
-- GitHub Pages
-- Vercel (Recommended)
-- Netlify
+Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy-pages.yml`.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for Cloudflare Pages, Netlify, and Vercel, plus custom-domain setup.
 
-## Key Features
+## Site structure
 
-- **EMG Signal Capture**: Lightweight surface sensors detect residual muscle activation
-- **Real-Time Virtual Control**: Signals drive a virtual prosthetic hand in training environments
-- **Clinician Dashboard**: Engagement metrics and activation insights
-- **Responsive Design**: Works on desktop, tablet, and mobile
-- **Dark Theme**: Optimized for extended viewing sessions
+`client/src/pages/Home.tsx` composes the sections in `client/src/components/site/`:
 
-## Content Sections
+1. **Hero**: positioning, plus a "press and hold" virtual-hand teaser
+2. **Story**: sticky scrollytelling through the care pathway (surgery → waiting → fitting → daily life)
+3. **Problem**: patient, clinician, and system lenses, with cited statistics
+4. **Product**: how Attune works, an interactive practice round, and an illustrative clinician readiness view
+5. **Opportunity**: why now, care-pathway positioning, B2B2C model, milestones
+6. **Mission**
+7. **Team**
+8. **Contact & footer**: audience-specific CTAs, sources, and regulatory disclaimer
 
-1. **Hero** - Product positioning and CTAs
-2. **Problem** - The early frustration and abandonment challenges
-3. **Solution** - Pre-prosthetic training approach
-4. **Hardware** - EMG armband specifications
-5. **How It Works** - 4-step process overview
-6. **Dashboard** - Clinician insights visualization
-7. **Market Opportunity** - TAM and business model
-8. **Team** - The Luminosity Lab team members
-9. **Roadmap** - 2026 and future plans
+Copy, links, team, and citations live in `client/src/lib/site.ts`.
 
-## Configuration
+### Content guardrails
 
-### Environment Variables
-
-Create a `.env.local` file if needed:
-
-```env
-# Add any necessary environment variables here
-```
-
-### Tailwind Customization
-
-Edit `client/src/index.css` to modify the color palette and theme.
+- Keep product descriptions high level. Don't publish signal-processing methods, metric definitions,
+  hardware specs, or performance numbers that haven't been validated.
+- Interactive demos are simulations (`useActivation`), not Attune's real pipeline, and are labeled as such.
+- Mock dashboard data must be labeled illustrative and never use realistic patient names.
+- Keep the footer disclaimer: Attune is in development and not FDA cleared.
 
 ### Theme
 
-The website uses a dark theme with the color scheme:
-- Primary: `#ffbd59` (Gold)
-- Dark BG: `#0f1e2b` (Navy)
-- Secondary BG: `#1b2f44` (Slate)
+Light, warm palette defined in `client/src/index.css` (`@theme`): paper `#fbf8f4`, ink `#1a1819`,
+cream `#f6e7d8` (brand), signal blue `#2f5fd0`. Display type is Fraunces; body text is Inter.
 
 ## Contributing
 

@@ -1,120 +1,39 @@
-# Deploying Attune Website to GitHub
+# Deploying the Attune website
 
-Your project is now ready to be hosted on GitHub. Follow these steps:
+The site is a static Vite build (`npm run build` → `dist/public`). It can be hosted on any static host.
 
-## Step 1: Create a GitHub Repository
+## Default: GitHub Pages (live today)
 
-1. Go to [GitHub.com](https://github.com) and sign in
-2. Click the **+** icon in the top-right corner and select **New repository**
-3. Name it: `attune-website` (or your preferred name)
-4. Add description: "The first pre-prosthetic EMG training platform"
-5. Choose **Public** (so it's accessible)
-6. **Do NOT** initialize with README, .gitignore, or license (we already have these)
-7. Click **Create repository**
+Pushing to `main` runs `.github/workflows/deploy-pages.yml`, which builds the site and publishes it to
+**https://attune-care.github.io/**. No other setup is needed.
 
-## Step 2: Push to GitHub
+To check a deploy: GitHub → **Actions** → "Deploy to GitHub Pages".
 
-In your terminal, run these commands from the project root:
+## Alternatives (all have free tiers)
 
-```bash
-cd "/Users/ashleyyang/Downloads/attune-website (1)"
+| Host | Free URL | Commercial use on free tier | Setup |
+| --- | --- | --- | --- |
+| GitHub Pages | `attune-care.github.io` | Allowed for project and org sites (not for running a business's transactions) | Already configured |
+| Cloudflare Pages | `attune.pages.dev` | Yes | Connect repo; build `npm run build`, output `dist/public` |
+| Netlify | `attune.netlify.app` | Yes | Connect repo; `netlify.toml` is included |
+| Vercel | `attune.vercel.app` | **No**: Hobby is for personal, non-commercial use. A company site should use Pro | Import repo; `vercel.json` is included |
 
-# Add the remote repository
-git remote add origin https://github.com/YOUR_USERNAME/attune-website.git
+Any of these will auto-deploy on push once the repo is connected. Each requires signing in with the team's
+own account, so it can't be done from this repo alone.
 
-# Rename branch to main (optional but recommended)
-git branch -m master main
+## Custom domain (recommended for credibility)
 
-# Push to GitHub
-git push -u origin main
-```
+There are no reputable *free* custom domains anymore. Free registries like Freenom have shut down, and
+free subdomain services look untrustworthy to clinicians and investors. A real domain costs roughly
+$10–35/year (for example `attune.care`, `attunecare.com`, or `attune.health`, if available).
 
-Replace `YOUR_USERNAME` with your actual GitHub username.
+To use one with GitHub Pages:
 
-## Step 3: Deploy with GitHub Pages
+1. Buy the domain from a registrar (Cloudflare Registrar, Namecheap, Porkbun, etc.).
+2. In the repo: **Settings → Pages → Custom domain**, enter the domain and save.
+3. At the registrar, add DNS records:
+   - Apex (`attune.care`): `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `www`: `CNAME` to `attune-care.github.io`
+4. Once DNS resolves, tick **Enforce HTTPS**.
 
-### Option A: Deploy Static Build (Recommended for Production)
-
-1. Install `gh-pages` package:
-```bash
-npm install --save-dev gh-pages
-```
-
-2. Update `package.json` scripts:
-```json
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist/public",
-  "build": "vite build",
-  "dev": "vite"
-}
-```
-
-3. Update `vite.config.ts` to set the base path:
-```typescript
-export default defineConfig({
-  base: '/attune-website/',  // Add this line
-  // ... rest of config
-})
-```
-
-4. Deploy:
-```bash
-npm run deploy
-```
-
-5. In GitHub, go to **Settings → Pages** and select:
-   - Source: **Deploy from a branch**
-   - Branch: **gh-pages**
-   - Folder: **/(root)**
-
-Your site will be live at: `https://YOUR_USERNAME.github.io/attune-website/`
-
-### Option B: Deploy with Vercel (Easier, Recommended)
-
-1. Go to [Vercel.com](https://vercel.com) and sign in with GitHub
-2. Click "New Project"
-3. Import your GitHub repository
-4. Vercel will auto-detect it's a Vite project
-5. Keep default settings and click "Deploy"
-
-Your site will be live at a unique Vercel URL (much cleaner than GitHub Pages).
-
-### Option C: Deploy with Netlify
-
-1. Go to [Netlify.com](https://netlify.com) and sign in with GitHub
-2. Click "New site from Git"
-3. Select your repository
-4. Build command: `npm run build`
-5. Publish directory: `dist/public`
-6. Click "Deploy"
-
-Your site will be live at a Netlify URL.
-
-## Making Updates
-
-After deploying, any future changes:
-
-```bash
-# Make your changes, then:
-git add -A
-git commit -m "Your change description"
-git push origin main
-
-# For GitHub Pages built with gh-pages:
-npm run deploy
-
-# For Vercel/Netlify: They auto-deploy on push!
-```
-
-## Recommended Deployment
-
-For the Attune website, I recommend **Vercel** because:
-- ✅ Automatic previews for pull requests
-- ✅ Serverless functions (future-proof if you add a backend)
-- ✅ Automatic HTTPS
-- ✅ Fast CDN globally
-- ✅ Free tier is generous
-- ✅ Cleaner custom domain setup
-
-All three options are free and easy to set up!
+Also add a matching email address on the domain (e.g. `hello@attune.care`) and update `client/src/lib/site.ts`.
