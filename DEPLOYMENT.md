@@ -4,8 +4,17 @@ The site is a static Vite build (`npm run build` → `dist/public`). It can be h
 
 ## Default: GitHub Pages (live today)
 
-Pushing to `main` runs `.github/workflows/deploy-pages.yml`, which builds the site and publishes it to
-**https://attune-care.github.io/**. No other setup is needed.
+Pushing to `main` runs `.github/workflows/deploy-pages.yml`. It builds the site and commits the output to
+the `gh-pages` branch, which GitHub Pages serves at **https://attune-care.github.io/**.
+
+Repo settings this relies on (already in place):
+
+- **Settings → Pages → Source:** Deploy from a branch, `gh-pages` / root
+- **Settings → Actions → General → Workflow permissions:** must allow the workflow to write contents
+
+The `github-pages` environment only allows the `gh-pages` branch, which is why the workflow doesn't use
+`actions/deploy-pages`. To switch to that later, set Pages Source to "GitHub Actions" and add `main` under
+Settings → Environments → github-pages → Deployment branches.
 
 To check a deploy: GitHub → **Actions** → "Deploy to GitHub Pages".
 
